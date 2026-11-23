@@ -1,0 +1,36 @@
+{
+  "timezone": "Asia/Jakarta",
+  "date_range": {
+    "start": "2025-10-01",
+    "end": "2026-09-30"
+  },
+  "weather": {
+    "endpoint": "https://archive-api.open-meteo.com/v1/archive",
+    "points": [
+      {"name": "banten", "lat": -6.40, "lon": 106.10},
+      {"name": "yogyakarta", "lat": -7.80, "lon": 110.37},
+      {"name": "bali", "lat": -8.45, "lon": 115.18}
+    ],
+    "hourly": [
+      "temperature_2m",
+      "relative_humidity_2m",
+      "surface_pressure",
+      "precipitation"
+    ]
+  },
+  "quake": {
+    "endpoint": "https://earthquake.usgs.gov/fdsnws/event/1/query",
+    "bbox": {"minlat": -12, "maxlat": -5, "minlon": 105, "maxlon": 117},
+    "min_magnitude": 4.0,
+    "match_radius_km": 300
+  },
+  "network": {"timeout_s": 15, "max_retries": 3, "backoff_s": 2},
+  "detector": {"series": "pressure_delta", "window": 24, "k": 3.0},
+  "inject": {"seed": 42, "n_anomalies": 30, "magnitude_sigma": 5.0},
+  "paths": {
+    "raw_dir": "data/raw",
+    "ground_truth": "data/ground_truth/anomaly_key.csv",
+    "log_file": "logs/pipeline.log",
+    "output_dir": "output"
+  }
+}
